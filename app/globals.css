@@ -177,3 +177,21 @@ div[role="dialog"],
 div[role="alertdialog"] {
   z-index: 99999 !important;
 }
+
+:root {
+  --color-bg: #080808;
+  --color-surface: #111111;
+  --color-border: #1f1f1f;
+  --color-primary: #c9ff47;
+  --color-primary-dark: #a8d93c;
+  --color-text: #f0f0f0;
+  --color-muted: #666666;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-text);
+  scroll-behavior: smooth;
+}
