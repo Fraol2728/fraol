@@ -1,10 +1,9 @@
 import type { SchemaTypeDefinition } from "sanity";
-import { categoryType } from "./categoryType";
-import { courseType } from "./courseType";
-import { lessonType } from "./lessonType";
-import { moduleType } from "./moduleType";
-import { noteType } from "./noteType";
+import { about } from "./about";
+import { post } from "./post";
+import { project } from "./project";
+import { service } from "./service";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [courseType, moduleType, lessonType, categoryType, noteType],
+  types: [project, post, service, about],
 };
