@@ -1,10 +1,11 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import FloatingCube from "@/components/three/FloatingCube";
-import ParticleField from "@/components/three/ParticleField";
 
+const ParticleField = dynamic(() => import("@/components/three/ParticleField"), { ssr: false });
+const FloatingCube = dynamic(() => import("@/components/three/FloatingCube"), { ssr: false });
 const headingLines = [
   { text: "Designing", className: "text-white" },
   { text: "Digital", className: "text-white" },
