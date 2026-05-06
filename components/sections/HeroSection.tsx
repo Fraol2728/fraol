@@ -11,7 +11,7 @@ const headingLines = [
   { text: "Experiences", className: "text-[#c9ff47] italic" },
 ];
 
-const stats = ["5+ Years Experience", "50+ Projects Done", "20+ Happy Clients"];
+const stats = ["6+ Years Experience", "70+ Projects Done", "35+ Happy Clients"];
 
 export default function HeroSection() {
   return (
@@ -53,8 +53,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
           >
-            Graphic Designer &amp; Web Developer crafting bold visuals and seamless digital products that leave a
-            mark.
+            Graphic Designer &amp; Web Developer based in Addis Ababa, Ethiopia, crafting bold visuals and seamless digital products with personality and purpose.
           </motion.p>
 
           <motion.div

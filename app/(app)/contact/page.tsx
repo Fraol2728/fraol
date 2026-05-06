@@ -1,5 +1,6 @@
 import { Clock3, Globe, Linkedin, Mail, MapPin, Dribbble, Github, Twitter } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
+import env from "@/lib/env";
 
 export const metadata = {
   title: "Contact | Portfolio",
@@ -7,7 +8,7 @@ export const metadata = {
 };
 
 const items = [
-  { icon: Mail, label: "Email", value: "your@email.com" },
+  { icon: Mail, label: "Email", value: env.site.email },
   { icon: MapPin, label: "Location", value: "Addis Ababa, Ethiopia" },
   { icon: Clock3, label: "Hours", value: "Mon–Fri, 9AM–6PM EAT" },
   { icon: Globe, label: "Work Mode", value: "Available for remote work worldwide" },

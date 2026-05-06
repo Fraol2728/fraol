@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useScrollPosition } from "./useScrollPosition";
+import env from "@/lib/env";
 
 const links = [
   { href: "/", label: "Home" },
@@ -29,7 +30,7 @@ export default function Navbar() {
         }`}
       >
         <Link href="/" className="text-lg font-semibold text-[color:var(--color-text)]">
-          YourName
+          {env.site.name}
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">
