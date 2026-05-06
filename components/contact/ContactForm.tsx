@@ -1,0 +1,19 @@
+"use client";
+import { useState } from "react";
+import { Check, Loader2, Send } from "lucide-react";
+// NOTE: react-hook-form + sonner couldn't be installed in this environment.
+
+// ...
+type FormState = { name: string; email: string; subject: string; projectType: string; budgetRange: string; message: string };
+type Errors = Partial<Record<keyof FormState, string>>;
+const initialState: FormState = { name: "", email: "", subject: "", projectType: "Web Development", budgetRange: "Under $500", message: "" };
+
+export default function ContactForm() { const [form, setForm] = useState<FormState>(initialState); const [errors, setErrors] = useState<Errors>({}); const [status, setStatus] = useState<"idle"|"loading"|"success">("idle");
+const validate = () => { const e: Errors = {}; if (!form.name.trim()) e.name = "Name is required"; if (!form.email.trim()) e.email = "Email is required"; else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Enter a valid email"; if (!form.subject.trim()) e.subject = "Subject is required"; if (!form.message.trim()) e.message = "Message is required"; setErrors(e); return Object.keys(e).length===0; };
+const onSubmit = async (event: React.FormEvent) => { event.preventDefault(); if (!validate()) return; setStatus("loading"); try { const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) }); const data = await res.json(); if (!res.ok || !data.success) throw new Error(data.message); setForm(initialState); setStatus("success"); window.alert("Message sent successfully!"); setTimeout(()=>setStatus("idle"),1800);} catch { setStatus("idle"); window.alert("Failed to send message. Please try again."); }};
+const base = "mt-1 w-full rounded-[10px] border bg-[#0d0d0d] px-4 py-3 text-white outline-none transition focus:border-[#c9ff47] focus:shadow-[0_0_0_3px_rgba(201,255,71,0.15)]";
+return <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-[#1f1f1f] bg-[#111111] p-6 md:p-8">{([ ["name","Name","text"],["email","Email","email"],["subject","Subject","text"],] as const).map(([k,l,t])=><div key={k}><label className="mb-1 block text-sm text-[#999]">{l}</label><input type={t} required value={form[k]} onChange={(e)=>setForm((p)=>({...p,[k]:e.target.value}))} className={`${base} ${errors[k]?"border-red-500":"border-[#1f1f1f]"}`} />{errors[k]?<p className="mt-1 text-xs text-red-500">{errors[k]}</p>:null}</div>)}
+<div><label className="mb-1 block text-sm text-[#999]">Project type</label><select className={`${base} border-[#1f1f1f]`} value={form.projectType} onChange={(e)=>setForm((p)=>({...p,projectType:e.target.value}))}>{["Web Development","Graphic Design","Branding","Motion Graphics","Other"].map((o)=><option key={o}>{o}</option>)}</select></div>
+<div><label className="mb-1 block text-sm text-[#999]">Budget range</label><select className={`${base} border-[#1f1f1f]`} value={form.budgetRange} onChange={(e)=>setForm((p)=>({...p,budgetRange:e.target.value}))}>{["Under $500","$500–$2000","$2000–$5000","$5000–$10000","$10000+"].map((o)=><option key={o}>{o}</option>)}</select></div>
+<div><label className="mb-1 block text-sm text-[#999]">Message</label><textarea rows={4} required value={form.message} onChange={(e)=>setForm((p)=>({...p,message:e.target.value}))} className={`${base} ${errors.message?"border-red-500":"border-[#1f1f1f]"}`} />{errors.message?<p className="mt-1 text-xs text-red-500">{errors.message}</p>:null}</div>
+<button type="submit" disabled={status==="loading"} className="flex w-full items-center justify-center gap-2 rounded-[10px] bg-[#c9ff47] px-6 py-3 font-bold text-[#080808] transition hover:scale-[1.02] hover:brightness-105">{status==="loading"?<><Loader2 className="h-4 w-4 animate-spin"/>Sending...</>:status==="success"?<><Check className="h-4 w-4"/>Message Sent!</>:<><Send className="h-4 w-4"/>Send Message</>}</button></form>; }
