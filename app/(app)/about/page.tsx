@@ -12,10 +12,10 @@ type About = { name?: string; role?: string; bio?: unknown[]; avatar?: unknown; 
 export const metadata: Metadata = { title: "About | Portfolio", description: "Learn more about who I am and what I do" };
 
 const timeline = [
-  ["2024-Present", "Freelance Designer & Developer", "Self Employed", "Designing and building end-to-end digital products for clients."],
-  ["2022-2024", "Senior UI/UX Designer", "Design Agency", "Led design systems and high-impact client web experiences."],
-  ["2020-2022", "Frontend Developer", "Tech Startup", "Built responsive product interfaces and shipped growth features."],
-  ["2018-2020", "Junior Graphic Designer", "Creative Studio", "Developed visual identities and marketing assets."],
+  ["2025-Present", "Independent Graphic Designer & Web Developer", "Addis Ababa, Ethiopia", "Delivering brand systems and high-performance websites for startups and local businesses."],
+  ["2023-2025", "Senior UI/UX & Brand Designer", "Creative Agency", "Led cross-functional design projects, brand refreshes, and product UX improvements."],
+  ["2021-2023", "Frontend Developer", "Product Startup", "Built and maintained scalable React interfaces with strong accessibility and performance practices."],
+  ["2019-2021", "Graphic Designer", "Design Studio", "Created visual identities, campaign assets, and social content for growing brands."],
 ] as const;
 
 export default async function AboutPage() {

@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
+import env from "@/lib/env";
 import { client } from "@/sanity/lib/client";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = "https://yourportfolio.com";
+  const base = env.site.url;
   const [projects, posts] = await Promise.all([
     client.fetch<Array<{ slug?: { current?: string } }>>(`*[_type == "project" && defined(slug.current)]{slug}`),
     client.fetch<Array<{ slug?: { current?: string } }>>(`*[_type == "post" && defined(slug.current)]{slug}`),

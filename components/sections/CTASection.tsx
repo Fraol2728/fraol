@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import env from "@/lib/env";
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -49,7 +50,7 @@ export default function CTASection() {
           className="mt-8 max-w-2xl text-lg leading-relaxed text-zinc-400"
         >
           Have a project in mind? I&apos;d love to hear about it. Let&apos;s create
-          something that stands out.
+          something that stands out. Reach me at {env.site.email}.
         </motion.p>
 
         <motion.div

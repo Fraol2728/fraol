@@ -8,6 +8,7 @@ import ShareButtons from "@/components/blog/ShareButtons";
 import { allPostsQuery, postBySlugQuery } from "@/lib/queries/posts";
 import { urlFor } from "@/lib/sanity/image";
 import { client } from "@/sanity/lib/client";
+import env from "@/lib/env";
 
 type Post = { _id: string; title: string; slug?: { current?: string }; excerpt?: string; thumbnail?: unknown; tags?: string[]; publishedAt?: string; body?: unknown[] };
 const readTime = (body?: unknown[]) => Math.max(1, Math.ceil(JSON.stringify(body ?? []).split(/\s+/).filter(Boolean).length / 200));
@@ -40,7 +41,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="mb-5 flex flex-wrap justify-center gap-2">{(post.tags ?? []).map((tag) => <span key={tag} className="rounded-full bg-[#c9ff47] px-3 py-1 text-xs font-semibold text-[#0a0a0a]">{tag}</span>)}</div>
         <h1 className="text-4xl font-black md:text-6xl">{post.title}</h1>
         <p className="mt-4 text-zinc-400">{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : ""} · {readTime(post.body)} min read</p>
-        <p className="mt-4 text-sm text-zinc-300">👤 Written by Your Name</p>
+        <p className="mt-4 text-sm text-zinc-300">👤 Written by {env.site.name}</p>
       </div>
     </section>
     <article className="mx-auto mt-16 max-w-[720px] px-6">

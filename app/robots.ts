@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
+import env from "@/lib/env";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [{ userAgent: "*", allow: "/", disallow: "/studio" }],
-    sitemap: "https://yourportfolio.com/sitemap.xml",
+    sitemap: `${env.site.url}/sitemap.xml`,
   };
 }
